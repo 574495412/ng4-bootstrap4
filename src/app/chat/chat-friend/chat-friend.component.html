@@ -1,0 +1,39 @@
+<div class="chat-friend-left">
+  <div class="cfl-head">
+    好友列表
+  </div>
+  <div *ngFor="let i of friendList">
+    <div class="chat-list" (click)="clickFriend(i)">
+      <div class="chat-list-left">
+        <div class="chat-list-avatar">
+          <img src="{{imghost}}{{i.userPhoto}}">
+        </div>
+      </div>
+      <div class="chat-list-right">
+        <div class="chat-list-username">{{i.username}}</div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+<div class="cf-right">
+  <div class="cf-head">
+      <div class="cf-head-left">
+        <div class="cf-username">{{current.username}}</div>
+        <div class="cf-description">{{current.description}}</div>
+      </div>
+      <div class="cf-head-right">
+        <div class="cf-icon">
+          <img src="{{imghost}}{{current.userPhoto}}">
+        </div>
+      </div>
+      <div class="clear"></div>
+  </div>
+  <div class="cf-main">
+    <div class="cf-button">
+      <button class="btn btn-success" (click)="clickMessage()">Message</button>
+      <button class="btn btn-primary" (click)="clickDetail()">Details</button>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

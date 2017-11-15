@@ -1,0 +1,52 @@
+<div class="jumbotron" style="padding:0;height:100%; margin-bottom:0">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <a style="position: absolute;top: 12px;left: 18px; color: #fff;font-size:20px">
+                < </a>
+                    <h3 class="panel-title" style="text-align:center">
+                        新的活动
+                    </h3>
+                    <a style="position: absolute;top: 18px;right: 18px; color: #fff;" (click)="publish()">
+                发布
+            </a>
+        </div>
+        <div class="panel-body">
+            <div class="panel-card-entry">
+                <input type="text" placeholder="标题" [(ngModel)]="title">
+            </div>
+            <textarea class="panel-card-textarea" [(ngModel)]="content" name="content" placeholder="描述"></textarea>
+            <label class="upload-seats" for="file">
+                <span>+</span>
+                <input type="file" id="file" style="display:none" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)" multiple>
+            </label>
+
+            <div class="upload-item " *ngFor="let item of uploader.queue; let i = index">
+                <img *ngIf="item.preview" [src]="item.preview" />
+                <span>{{item.file.name}}</span>
+                <!-- <mdl-progress [progress]="item.progress"></mdl-progress> -->
+                <!-- <span>{{item.progress}}%</span> -->
+                <!-- <button (click)="item.upload()">file_upload</button>
+                <button (click)="item.remove()">>delete</button> -->
+            </div>
+            <!-- <div class="actions">
+                <input type="file" multiple ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)" />
+                <button (click)="selectFiles()">Custom Select Files</button>
+                <button (click)="uploader.uploadAll()">Upload All</button>
+                <button (click)="uploader.clearQueue()">Clear All</button>
+            </div> -->
+        </div>
+    </div>
+    <div class="row" style="padding: 15px">
+        <div class="col-xs-6" style="text-align:left">
+            <div class="container center-block">
+                <div class='input-group' style="display:table" id='datetimepicker1'>
+                    <label class="center-block">开始时间</label>
+                    <input type="date" class="card-date" name="DeadTime" [(ngModel)]="DeadTime">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6" style="text-align:right">
+            <button type="button" class="btn btn-light" routerLink="/ticketDatails">票务信息</button>
+        </div>
+    </div>
+</div>

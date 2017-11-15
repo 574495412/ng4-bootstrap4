@@ -1,0 +1,69 @@
+<div class="nav-container" [ngClass]="{'hide-nav-tab-height':!subNav}">
+    <div class="nav-bar">
+        <div class="logo">
+            <a href="index.html"><img src="/assets/img/logo.png"></a>
+        </div>
+        <div class="logo-small">
+            <a href="index.html"><img src="/assets/img/logo-sigle.png"></a>
+        </div>
+        <nav class="nav-right">
+            <ul>
+                <li>
+                    <!--<a href="/group/{{target.id}}">Group Members</a>-->
+                    <a href="{{appdownload}}">{{'downloadApp'|translate}}</a>
+                </li>
+            </ul>
+        </nav>
+        <!--nav>
+            <ul>
+                <li *ngIf="this.userInfo.isSigned">
+                  <a (click)="navToMessage()" href="javascript:;">
+                    通知
+                    <i *ngIf="this.userInfo.noticeNumber>0" class="mdi mdi-checkbox-blank-circle nav-message-circle"></i>
+                  </a>
+                </li>
+                <li *ngIf="this.userInfo.isSigned"><a (click)="navToFriend()" href="javascript:;">{{'friend'|translate}}</a></li>
+                <li *ngIf="this.userInfo.isSigned"><a (click)="navToCreate()" href="javascript:;">创建</a></li>
+                <li *ngIf="!this.userInfo.isSigned"><a (click)="openSignIn()" href="#">登录/注册</a></li>
+                <li *ngIf="this.userInfo.isSigned"><a (click)="logout()" href="#">登出</a></li>
+                <li *ngIf="this.userInfo.isSigned"><a href="#"><div class="avatar"><img src="{{this.userInfo.userImg}}" onError="this.src='./assets/img/group01.png'" width="30" height="30"></div></a></li>
+            </ul>
+        </nav-->
+        <!--div class="search">
+            <form (ngSubmit)="search()">
+                <input class="form-control" type="text" placeholder="搜索" [(ngModel)]="searchText" name="search">
+                <a href="javascript:;" class="search-btn" (click)="search()"><i class="mdi mdi-magnify"></i></a>
+            </form>
+        </div>
+        <div class="menu-btn side-overlay-menu">
+            <a href="javascript:;" type="submit"><i class="mdi mdi-menu"></i></a>
+        </div-->
+    </div>
+    <div class="nav-tab" *ngIf="subNav">
+        <ul class="block-tabs">
+            <li class="active"><a (click)="navToAllTypes()" href="javascript:;">所有</a></li>
+          <li><a (click)="navToEvents()" href="javascript:;">活动</a></li>
+            <li><a (click)="navToCircles()" href="javascript:;">圈子</a></li>
+        </ul>
+    </div>
+</div>
+<div class="cd-popup" role="alert">
+    <app-signin (switchView)="switchView()" (closeSign)="closeSign()" *ngIf="this.switch"></app-signin>
+    <app-signup (switchView)="switchView()" (closeSign)="closeSign()" *ngIf="!this.switch"></app-signup>
+</div>
+
+<!--div id="side-overlay">
+    <a href="javascript:void(0)" class="side-overlay-close js-side-overlay-close"><i class="mdi mdi-window-close"></i></a>
+    <ul class="side-menu">
+        <li><a href="#">登录</a></li>
+        <li><a href="#">注册</a></li>
+        <hr class="side-menu-line">
+        <li><a href="#">通知</a></li>
+        <li><a href="#">好友</a></li>
+        <li><a href="#">活动</a></li>
+        <hr class="side-menu-line">
+        <li><a href="#">下载应用</a></li>
+    </ul>
+</div-->
+
+

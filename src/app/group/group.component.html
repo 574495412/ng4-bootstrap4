@@ -1,0 +1,57 @@
+
+<app-nav hideNavTab = true></app-nav>
+<!--<div class="nav-container no-tab">-->
+  <!--&lt;!&ndash;<div class="nav-bar">&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="logo">&ndash;&gt;-->
+      <!--&lt;!&ndash;<a href="index.html"><img src="img/logo.png"></a>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="logo-small">&ndash;&gt;-->
+      <!--&lt;!&ndash;<a href="index.html"><img src="img/logo-sigle.png"></a>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<nav>&ndash;&gt;-->
+      <!--&lt;!&ndash;<ul>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li><a href="#">通知</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li><a href="#">好友</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li><a href="#">活动</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li><a class="cd-popup-trigger" href="#">登录/注册</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li><a href="#"><div class="avatar"><img src="img/tourism-3.jpg" width="30" height="30"></div></a></li>&ndash;&gt;-->
+      <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+    <!--&lt;!&ndash;</nav>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="search">&ndash;&gt;-->
+      <!--&lt;!&ndash;<input class="form-control" type="text" placeholder="搜索">&ndash;&gt;-->
+      <!--&lt;!&ndash;<a class="search-btn" href="#"><i class="mdi mdi-magnify"></i></a>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="menu-btn side-overlay-menu">&ndash;&gt;-->
+      <!--&lt;!&ndash;<a href="javascript:;"><i class="mdi mdi-menu"></i></a>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--&lt;!&ndash;<div class="top-bar">&ndash;&gt;-->
+    <!--&lt;!&ndash;<a class="pull-left" href="#">返回群聊</a>&ndash;&gt;-->
+    <!--&lt;!&ndash;<a class="pull-right" href="http://a.app.qq.com/o/simple.jsp?pkgname=co.chumi.cq.www">下载初觅</a>&ndash;&gt;-->
+    <!--&lt;!&ndash;<h1 class="top-bar-title">群成员</h1>&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--</div>-->
+
+<div class="group-container">
+  <div class="container">
+    <div class="card" style="margin: 20px auto">
+      <a class="pull-left" href="chat/user/{{userId}}/group/{{groupId}}">群聊</a>
+      <!--<a class="pull-right" href="http://a.app.qq.com/o/simple.jsp?pkgname=co.chumi.cq.www">下载初觅</a>-->
+      <!--<h1 class="top-bar-title">群成员</h1>-->
+    </div>
+    <h1 class="group-title">{{groupTitle}}</h1>
+    <h4>感谢你参加我们举办的活动，所有活动中的信息我们会在群聊中发出，为了方便，推荐你下载app，保证我们能互相联系。</h4>
+    <hr style="margin-bottom: 25px">
+    <div class="users-wrap row">
+      <span *ngFor="let user of groupUsers; let i = index" class="col-xs-3">
+        <div class="user-avatar">
+          <img src="{{http.imghost}}{{user.avatarImg}}"
+               onError="this.src='./assets/img/group01.png';">
+        </div>
+        <div class="user-name">{{user.userName.slice(0,10)}}</div>
+      </span>
+    </div>
+  </div>
+</div>
+

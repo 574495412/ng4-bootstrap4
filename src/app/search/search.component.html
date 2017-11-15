@@ -1,0 +1,13 @@
+<app-nav></app-nav>
+<div class="search-tab">
+  <ul class="block-tabs">
+    <li [attr.class]="feedActive"><a href="javascript:;" (click)="changeTab('feed')">Feed</a></li>
+    <li [attr.class]="userActive"><a href="javascript:;" (click)="changeTab('user')">User</a></li>
+    <li [attr.class]="circleActive"><a href="javascript:;" (click)="changeTab('circle')">Circle</a></li>
+  </ul>
+</div>
+<div>
+  <app-search-feed *ngIf="feedActive" [feeds]="feeds"></app-search-feed>
+  <app-search-user *ngIf="userActive" [users]="users"></app-search-user>
+  <app-search-circle *ngIf="circleActive" ></app-search-circle>
+</div>

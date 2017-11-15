@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="flex_wrapper">
+    <div class="ys_prompt_pay">
+      <div class="ys_prompt_icon pay_done_icon">
+        <i class="iconfont icon-correct_big"></i>
+      </div>
+      <div class="ys_prompt_tips">
+        <h2 class="ys_pt_title">{{'message1'|translate}}</h2>
+        <p class="ys_pt_desc">{{'message2'|translate}}</p>
+        <p class="ys_pt_desc" style="color: #57c96d">{{num}} {{'attendantswait'|translate}}</p>
+      </div>
+    </div>
+    <div class="ys_prompt_pay">
+      <p class="ys_prompt_tips" style="color: darkgray">{{accountTemp}}</p>
+    </div>
+    <div class="users-list">
+      <ul class="people-list">
+        <li *ngFor="let user of groupUsers; let i = index">
+          <a><img src="{{http.imghost}}{{user.avatarImg}}" onError="this.src='./assets/img/group01.png';"></a><p>{{user.userName.slice(0,10)}}</p>
+        </li>
+      </ul>
+    </div>
+    <div class="pay_preview">
+      <div class="pay_ph_bd">
+        <div class="pay_ph_item">
+          <label>{{'invoiceDate'|translate}}</label>
+          <span id="dateitem">{{date| date: 'dd-MM-yyyy'}}</span>
+        </div>
+        <div class="pay_ph_item">
+          <label>{{'invoiceid'|translate}}</label>
+          <span>{{invoiceId}}</span>
+        </div>
+        <div class="pay_ph_item">
+          <label>{{'invoiceTitle'|translate}}</label>
+          <span id="titleitem">{{titleitem}}</span>
+        </div>
+        <div class="pay_ph_item">
+          <label>{{'payamount'|translate}}</label>
+          <span id="amount_due">{{amount_due}}</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="fixed-height"></div>
+    <div class="go-activity">
+      <a class="go-activity-btn" id="joinbutton" href="/chat/user/{{userId}}/group/{{groupId}}">{{'JoinGroupChat'|translate}}</a>
+    </div>
+  </div>
+</div>

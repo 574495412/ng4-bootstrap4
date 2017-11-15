@@ -1,0 +1,32 @@
+<div class="cw-head">
+  {{target?.name}}
+</div>
+<div class="chat-window-display" id="window">
+  <div class="chat-window-msgs">
+    <div *ngFor="let i of messages">
+      <div class="chat-window-messages" *ngIf="i.messageDirection==2">
+        <div class="chat-window-avatar left">
+          <img src="{{i.content.user.icon}}">
+        </div>
+        <div class="chat-window-text left white">{{i.content.content}}</div>
+        <div class="clear"></div>
+      </div>
+      <div class="chat-window-messages" *ngIf="i.messageDirection==1">
+        <div class="chat-window-avatar right">
+          <span>{{i.content.user.name}}</span>
+          <img src="{{i.content.user.icon}}">
+        </div>
+        <div class="chat-window-text right blue">{{i.content.content}}</div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="chat-window-input">
+  <button class="btn btn-success pull-left" (click)="onSentMsgBtnClick($event)">发送</button>
+    <form>
+      <textarea [(ngModel)]="myMessage" (keydown)="pressKey($event)" name="myMessage">
+      </textarea>
+    </form>
+
+</div>

@@ -1,0 +1,157 @@
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css";
+
+.modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .modal-dialog {
+        margin-top: 200px;
+    }
+
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.member-row {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.channel-name {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.creator-name {
+    text-align: center;
+    font-size: 18px;
+}
+
+.user-icon-img {
+    display: block;
+    margin: auto;
+    object-fit: cover;
+    object-position: center;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    margin-bottom: 50px;
+    border: 1px solid #E8E8E8;
+}
+
+.share-button {
+    margin-bottom: 30px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 35px;
+    background-color: #f73057;
+    color: #fff;
+    font-weight: 600;
+    transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+}
+.share-button:hover {
+    background-color: #e0254a;
+    color: #fff;
+    text-decoration: none;
+}
+
+.pay-title {
+    font-weight: 600;
+    border-left: 5px solid #f73057;
+    padding-left: 8px;
+}
+
+.circle-title {
+    font-weight: 600;
+    border-left: 5px solid #f73057;
+    padding-left: 8px;
+}
+
+.circle-des {
+    margin-bottom: 30px;
+}
+
+.hide-pay-button {
+    display: none;
+}
+
+@media (min-width:750px) {
+    .main-content {
+        margin-top: 100px;
+        width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .info-section {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .info-element {
+        width: 100%;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        border: 1px solid #E8E8E8;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+@media (max-width:749px) {
+
+    .main-content {
+        margin-top: 90px;
+        width: 100%;
+    }
+
+    .user-icon-img {
+        display: block;
+        margin: auto;
+        object-fit: cover;
+        object-position: center;
+        height: 50vw;
+        width: 50vw;
+        border-radius: 50%;
+        margin-bottom: 50px;
+    }
+
+    .member-row {
+        width: 80vw;
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+
+    .info-element {
+        margin-bottom: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        width: 80vw;
+        border-radius: 12px;
+        border: 1px solid #E8E8E8;
+        padding: 10px;
+    }
+}

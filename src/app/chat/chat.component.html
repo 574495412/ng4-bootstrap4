@@ -1,0 +1,33 @@
+<!--<app-nav></app-nav>-->
+<div class="container-banner" style="background-color: white;height:100%">
+
+  <div class="container" *ngIf="!isMobile">
+    <div class="chat-box">
+      <div class="chat-side">
+        <div class="chat-side-img">
+          <img src="{{my.icon}}">
+        </div>
+        <div class="chat-side-tab" (click)="clickChat()">
+          Chat
+        </div>
+        <div class="chat-side-tab" (click)="clickFriend()">
+          Friends
+        </div>
+      </div>
+      <div class="chat-friend" *ngIf="!isChat">
+        <app-chat-friend [friendList]="friendList" (triggerMessage)="triggerMessage($event)"></app-chat-friend>
+      </div>
+      <div class="chat-main" *ngIf="isChat">
+        <div class="chat-left">
+          <app-chat-list [userList]="userList" (changeUser)="changeUser($event)"></app-chat-list>
+        </div>
+        <div class="chat-right">
+          <app-chat-window [messages]="messages" [target]="target" (sendMessage)="sendMessage($event)"></app-chat-window>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+  <app-chat-mobile [messages]="messages" [target]="target" (sendMessage)="sendMessage($event)" *ngIf="isMobile"></app-chat-mobile>
+
+</div>

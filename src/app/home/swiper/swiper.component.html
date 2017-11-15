@@ -1,0 +1,35 @@
+<section>
+  <div class="swiper-padding">
+    <div class="swiper-title">
+      <h1>{{title}}</h1>
+    </div>
+    <div id="swiper1" class="swiper-container">
+      <div class="swiper-wrapper" *ngFor="let item of data">
+        <div class="swiper-slide">
+          <div class="activity-imgwrapper">
+            <div class="activity-imgwrap">
+              <a href="#">
+                <div class="activity-img" [style.background-image]="'url(http://dhjjgq45wu4ho.cloudfront.net/' + item?.cover + ')'"></div>
+              </a>
+            </div>
+          </div>
+          <div class="activity-text">
+            <!--<span class="activity-price">FREE</span>-->
+            <span class="activity-title">{{item?.title}}</span>
+          </div>
+          <div class="activity-time">
+            <span>{{ item?.postDate | date:'medium' }}</span>
+            <a class="love-btn" href="javascript:;"><i class="mdi mdi-heart-outline"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add Arrows -->
+    <div id="swiper1-next" class="swiper-next active">
+      <i class="stack-interface stack-right-open-big"></i>
+    </div>
+    <div id="swiper1-prev" class="swiper-prev active">
+      <i class="stack-interface stack-left-open-big"></i>
+    </div>
+  </div>
+</section>

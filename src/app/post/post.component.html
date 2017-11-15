@@ -1,0 +1,442 @@
+<app-nav hideNavTab=t rue></app-nav>
+
+<div class="main-container">
+    <div class="card-content no-tab">
+        <div class="container">
+            <div class="activity-head">
+                <div class="author">
+                    <a class="author-img"><img src="{{creatorIcon}}" onError="this.src='./assets/img/group01.png'" /></a>
+                    <div class="author-info">
+                        <span class="authorname">{{creatorName}}</span>
+                        <!--a href="javascript:;" class="btn-follow"><i class="mdi mdi-plus"></i> 关注</a>
+            <a href="javascript:;" class="btn-follow following"><i class="mdi mdi-check"></i> 已关注</a-->
+                        <div class="authormeta">
+                            <span class="publish-time">{{'time'|translate}} {{postDate | displayDate}}</span>
+                            <span class="views-count">{{'view'|translate}} {{views}}</span>
+                            <span class="comments-count">{{'comment'|translate}} {{commentsCount}}</span>
+                            <span class="likes-count">{{'likes'|translate}} {{liksCount}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="title-head">
+                    <h1>{{title}}</h1>
+                </div>
+            </div>
+
+            <div class="event-start-time">
+                <h3> {{priceText}} </h3>
+            </div>
+
+            <div class="activity-body">
+                <a class="img-post"><img src="{{cover}}" /></a>
+                <div class="article-post">
+                    <p class="post-content">{{content}}</p>
+                </div>
+
+                <div class="event-start-time">
+                    <h1> {{'startTime'|translate}}：{{eventStartTime | displayDate}} </h1>
+                </div>
+
+                <div class="img-box clearfix">
+
+                    <div *ngFor="let image of images" class="col-md-3">
+                        <a><img src="{{photoServerUrl + image}}" /></a>
+                    </div>
+                </div>
+                <div class="tags clearfix">
+                    <ul>
+                        <li *ngFor="let tag of tags"><a>{{tag}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="loveit">
+                <!--button class="loveit-btn"><i class="mdi mdi-heart-outline"></i>喜欢</button>
+        <button class="loveit-btn active"><i class="mdi mdi-heart"></i>喜欢</button-->
+                <!--span class="share-t">{{'share'|translate}}：</span>
+        <ul class="share">
+          <li><a class="wechat"><i class="mdi mdi-wechat" style="font-size: 23px"></i></a></li>
+          <li><a class="facebook"><i class="mdi mdi-facebook"></i></a></li>
+          <li><a class="twitter"><i class="mdi mdi-twitter"></i></a></li>
+        </ul>-->
+
+                <div class="share-button" data-toggle="modal" data-target="#showShare">{{'share'|translate}}</div>
+                <div class="modal fade" id="showShare" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">{{'share'|translate}}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="social-share" [attr.data-title]="shareTitle" [attr.data-description]="des"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">{{'cancel'|translate}}</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="signedup">
+                <div class="setop">
+                    <!--span>30人报名</span-->
+                </div>
+                <div class="clearfix">
+
+                    <div class="signup" *ngIf="!isFree && !deadtimeInvalid && !isAlreadyJoin">
+
+                        <a data-toggle="modal" data-target="#buyTicket" (click)="joinEvent()">
+                            <span>{{'register'|translate}}</span>
+                            <i class="mdi mdi-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="signup" *ngIf="isFree  && !deadtimeInvalid && !isAlreadyJoin">
+                        <a data-toggle="modal" data-target="#joinFree" (click)="joinEventFree()">
+                            <span>{{'freeTojoin'|translate}}</span>
+                            <i class="mdi mdi-arrow-right"></i>
+                        </a>
+                    </div>
+
+
+                    <div class="signup" *ngIf="isAlreadyJoin">
+                        <a data-toggle="modal" data-target="#joinFree" (click)="alreadyJoin()">
+                            <span>{{'JoinGroupChat'|translate}}</span>
+                            <i class="mdi mdi-arrow-right"></i>
+                        </a>
+                    </div>
+
+
+                    <!-- Modal -->
+                    <div id="joinFree" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">{{'Registration'|translate}}</h4>
+                                </div>
+                                <div class="modal-body modal-backgroud">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label for="inputEmailFree" class="control-label">{{'email'|translate}}：</label>
+                                            <div class="">
+                                                <input type="text" name="joinEmail" required [(ngModel)]="joinModel.email" #joinEmail="ngModel" pattern="[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.[a-zA-Z]{2,3}$" (keyup)="onKeyEmail($event)" class="form-control" id="inputEmailFree" placeholder="Email" />
+                                                <div *ngIf="joinEmail.errors && (joinEmail.dirty || joinEmail.touched)" class="alert alert-danger">
+                                                    <div [hidden]="!joinEmail.errors.required">{{'emailCannotBeBlank'|translate}}</div>
+                                                    <div [hidden]="!joinEmail.errors.pattern">{{'emailCannotBeBlank'|translate}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputUsernameFree" class="control-label">{{'username'|translate}}: </label>
+                                            <div class="">
+                                                <input type="text" (keyup)="onKeyUsername($event)" class="form-control" id="inputUsernameFree" placeholder="Username" required [(ngModel)]="joinModel.name" #joinName="ngModel" name="joinName">
+                                                <div *ngIf="joinName.errors && (joinName.dirty || joinName.touched)" class="alert alert-danger">
+                                                    <div [hidden]="!joinName.errors.required">{{'usernameCanotbeBlank'|translate}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button *ngIf="!joinEmail.errors && !joinName.errors" type="submit" class="btn btn-default" (click)="submitJoinFree()">{{'confirm'|translate}}</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">{{'cancel'|translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div id="buyTicket" class="modal fade" role="dialog" [ngClass]="{'bg-black':showPicture}">
+                        <img src="https://dhjjgq45wu4ho.cloudfront.net/{{ticketPicture}}" width="100%" (click)="zoomBackPicture()" *ngIf="showPicture">
+                        <div class="modal-dialog" *ngIf="!showPicture">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">{{'chooseTicketType'|translate}}</h4>
+                                </div>
+                                <div class="modal-body modal-backgroud">
+                                    <div>
+                                        <div *ngFor="let name of ticketNames; let i = index">
+                                            <div *ngIf="ticketQuantities[i] != 0 && ticketQuantities[i] != undefined && ticketQuantities[i] != null" class="ticket-card hvr-shutter-out-horizontal" data-toggle="modal" [attr.data-target]="modalTarget" (click)="clickTicket(i)">
+                                                <div class="ticket-card-name">{{name}}</div>
+                                                <div class="ticket-card-price">{{currency}} {{ticketPrices[i]}}</div>
+                                                <div class="ticket-card-fee">Fee: {{currency}} {{ticketPrices[i] | calculateFee}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <a (click)="zoomFullPicture()" *ngIf="seatSelection">座位图</a>
+                                    <!--<button *ngIf="mixpayment" type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#joinFree" (click)="joinEventFree()">{{'alreadybought'|translate}}</button>-->
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">{{'cancel'|translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div id="seatSelect" class="modal fade" role="dialog" [ngClass]="{'bg-black':showPicture}">
+                        <img src="https://dhjjgq45wu4ho.cloudfront.net/{{ticketPicture}}" width="100%" (click)="zoomBackPicture()" *ngIf="showPicture">
+                        <div class="modal-dialog" *ngIf="!showPicture">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">{{'seatSelection'|translate}}</h4>
+                                </div>
+                                <div class="modal-body modal-backgroud">
+                                    <div class="seat-row" *ngFor="let item of createRange(rowsNumber); let b = index">
+                                        <!--*ngFor="let rows of createRange(rowsNumber); let currentElementIndex=index"-->
+                                        <div *ngFor="let seat of seatRow(b); let i = index" [ngClass]="{'disable-seat':seat!=0,'hvr-shutter-out-horizontal':seat==0,'hvr-shutter-out-horizontal-clicked':selectedSeat.indexOf(i)>=0}" (click)="buyTicket(b,i)" class="seat-card">
+                                            <div class="seat-index">{{titleRow(b) + addtogether(i)}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+
+                                    <a (click)="zoomFullPicture()" *ngIf="seatSelection">座位图</a>
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#payment-modal">{{'buy'|translate}}</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">{{'cancel'|translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div id="payment-modal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">{{'payment'|translate}}</h4>
+                                </div>
+                                <div class="modal-body modal-backgroud">
+                                    <img src="./assets/img/paymentMethod.png" class="payment-image" />
+                                    <div class="stripe-form">
+                                        <form class="payform">
+                                            <div class="group">
+                                                <label>
+                          <span class="hide-on-mobile">{{'email'|translate}}：</span>
+                          <input (keyup)="onKeyEmail($event)" name="user-email" class="field form-control" placeholder="Email" type="text" required [(ngModel)]="paymentModel.email" #paymentEmail="ngModel" pattern="[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.[a-zA-Z]{2,3}$"/>
+                        </label>
+
+                                                <div *ngIf="paymentEmail.errors && (paymentEmail.dirty || paymentEmail.touched)" class="alert alert-danger">
+                                                    <div [hidden]="!paymentEmail.errors.required">{{'emailCannotBeBlank'|translate}}</div>
+                                                    <div [hidden]="!paymentEmail.errors.pattern">{{'emailCannotBeBlank'|translate}}</div>
+                                                </div>
+                                            </div>
+                                            <div class="group">
+                                                <label>
+                          <span class="hide-on-mobile">{{'nameOnCreditCard'|translate}}:</span>
+                          <input (keyup)="onKeyUsername($event)" name="cardholder-name" class="field form-control" placeholder="Cardholder Name" required [(ngModel)]="paymentModel.name" #paymentName="ngModel"/>
+                        </label>
+                                                <div *ngIf="paymentName.errors && (paymentName.dirty || paymentName.touched)" class="alert alert-danger">
+                                                    <div [hidden]="!paymentEmail.errors.required">{{'nameOnCreditCardTip'|translate}}</div>
+                                                </div>
+                                                <label>
+                          <span class="hide-on-mobile">{{'cardNumber'|translate}}:</span>
+                          <div id="card-element" class="field"></div>
+                        </label>
+                                            </div>
+
+                                            <button type="submit" id="paybutton" [disabled]="!isValidForm()">{{'pay'|translate}}</button>
+                                            <div class="payment-notice">
+                                                <span>
+                          I accept the terms of service and have read the privacy policy. Chumi will not save any credit card information.
+                        </span>
+                                            </div>
+                                            <div class="outcome">
+                                                <div class="error" role="alert"></div>
+                                            </div>
+                                            <div></div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <!--button type="button" class="btn btn-default" (click)="closeAllModal()">关闭全部</button-->
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">{{'cancel'|translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="comment-list">
+                <div class="setop">
+                    <span>{{commentsCount}} {{'comment'|translate}}</span>
+                </div>
+                <div class="comment-body">
+                    <!--form class="reviews">
+            <a class="comment-avatar" href="#"><img src="img/avatar.png"></a>
+            <textarea placeholder="请写下你的评论..."></textarea>
+            <div class="send-group">
+              <a class="cancel-btn">取消</a>
+              <a class="send-btn">发送</a>
+            </div>
+          </form-->
+                    <div class="comments" *ngFor="let comment of comments">
+                        <a class="comment-avatar"><img src="{{photoServerUrl + comment.photo}}" onError="this.src='./assets/img/group01.png'"></a>
+                        <div class="comment-details">
+                            <a class="co-hd">{{comment.Name}}</a>
+                            <div class="co-bd">{{comment.content}}</div>
+                            <div class="co-ft">
+                                <span>{{comment.postDate | displayDate}}</span>
+                                <button><i class="mdi mdi-message-outline"></i> {{'comment'|translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--div class="comments">
+            <a class="comment-avatar" href="#"><img src="img/avatar.png"></a>
+            <div class="comment-details">
+              <a href="#" class="co-hd">七个总比八哥好</a>
+              <div class="co-bd">看军姿：我军整齐，印军歪三扭四的。我军纪律战斗力肯定比对方强。另外这是很好的爱国宣传材料，宣传部该用用，别整天说套话。看军姿：我军整齐，印军歪三扭四的。我军纪律战斗力肯定比对方强。另外这是很好的爱国宣传材料，宣传部该用用，别整天说套话。</div>
+              <div class="co-ft">
+                <span>2017.06.05 18:30</span>
+                <button><i class="mdi mdi-message-outline"></i> 回复</button>
+              </div>
+            </div>
+          </div>
+          <div class="comments">
+            <a class="comment-avatar" href="#"><img src="img/avatar.png"></a>
+            <div class="comment-details">
+              <a href="#" class="co-hd">七个总比八哥好</a>
+              <div class="co-bd">看军姿：我军整齐，印军歪三扭四的。我军纪律战斗力肯定比对方强。另外这是很好的爱国宣传材料，宣传部该用用，别整天说套话。看军姿：我军整齐，印军歪三扭四的。我军纪律战斗力肯定比对方强。另外这是很好的爱国宣传材料，宣传部该用用，别整天说套话。</div>
+              <div class="co-ft">
+                <span>2017.06.05 18:30</span>
+                <button><i class="mdi mdi-message-outline"></i> 回复</button>
+              </div>
+            </div>
+            <div class="sub-comment-list">
+              <form class="reviews sub-reviews">
+                <textarea placeholder="请写下你的评论..."></textarea>
+                <div class="send-group">
+                  <a class="cancel-btn" href="#">取消</a>
+                  <a class="send-btn" href="#">发送</a>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="comments">
+            <a class="comment-avatar" href="#"><img src="img/avatar.png"></a>
+            <div class="comment-details">
+              <a href="#" class="co-hd">七个总比八哥好</a>
+              <div class="co-bd">看军姿：我军整齐，印军歪三扭四的。我军纪律战斗力肯定比对方强。另外这是很好的爱国宣传材料，宣传部该用用，别整天说套话。看军姿：我军整齐，印军歪三扭四的。我军纪律战斗力肯定比对方强。另外这是很好的爱国宣传材料，宣传部该用用，别整天说套话。</div>
+              <div class="co-ft">
+                <span>2017.06.05 18:30</span>
+                <button><i class="mdi mdi-message-outline"></i> 回复</button>
+              </div>
+            </div>
+            <div class="sub-comment-list">
+              <div class="sub-comment">
+                <a href="#" class="co-hd sub-name">七个</a>
+                <span class="reply-split">回复</span>
+                <a href="#" class="co-hd sub-name">八哥</a>
+                <span class="reply-content">笔者这是没有写的了，写这么无聊的事情，还取一个羞羞的名字。。。一下拉低了逼格</span>
+                <div class="co-ft">
+                  <span>2017.06.05 18:30</span>
+                  <button><i class="mdi mdi-message-outline"></i> 回复</button>
+                </div>
+              </div>
+              <div class="sub-comment">
+                <a href="#" class="co-hd sub-name">七个</a>
+                <span class="reply-split">回复</span>
+                <a href="#" class="co-hd sub-name">八哥</a>
+                <span class="reply-content">我们都是一样的人哈哈</span>
+                <div class="co-ft">
+                  <span>2017.06.05 18:30</span>
+                  <button><i class="mdi mdi-message-outline"></i> 回复</button>
+                </div>
+              </div>
+              <div class="add-comment">
+                <button><i class="mdi mdi-lead-pencil"></i>添加新评论</button>
+              </div>
+            </div>
+          </div>
+          <div class="comments">
+            <a class="comment-avatar" href="#"><img src="img/avatar.png"></a>
+            <div class="comment-details">
+              <a href="#" class="co-hd">七个总比八哥好</a>
+              <div class="co-bd">看军姿：我军整齐，印军歪三扭四的。我军纪律战斗力肯定比对方强。另外这是很好的爱国宣传材料，宣传部该用用，别整天说套话。看军姿：我军整齐，印军歪三扭四的。我军纪律战斗力肯定比对方强。另外这是很好的爱国宣传材料，宣传部该用用，别整天说套话。</div>
+              <div class="co-ft">
+                <span>2017.06.05 18:30</span>
+                <button><i class="mdi mdi-message-outline"></i> 回复</button>
+              </div>
+            </div>
+            <div class="sub-comment-list">
+              <div class="sub-comment">
+                <a href="#" class="co-hd sub-name">七个</a>
+                <span class="reply-split">回复</span>
+                <a href="#" class="co-hd sub-name">八哥</a>
+                <span class="reply-content">笔者这是没有写的了，写这么无聊的事情，还取一个羞羞的名字。。。一下拉低了逼格笔者这是没有写的了，写这么无聊的事情，还取一个羞羞的名字。。。一下拉低了逼格</span>
+                <div class="co-ft">
+                  <span>2017.06.05 18:30</span>
+                  <button><i class="mdi mdi-message-outline"></i> 回复</button>
+                </div>
+              </div>
+              <div class="sub-comment">
+                <a href="#" class="co-hd sub-name">七个</a>
+                <span class="reply-split">回复</span>
+                <a href="#" class="co-hd sub-name">八哥</a>
+                <span class="reply-content">我们都是一样的人哈哈</span>
+                <div class="co-ft">
+                  <span>2017.06.05 18:30</span>
+                  <button><i class="mdi mdi-message-outline"></i> 回复</button>
+                </div>
+              </div>
+              <div class="add-comment">
+                <button><i class="mdi mdi-lead-pencil"></i>添加新评论</button>
+              </div>
+              <form class="reviews sub-reviews">
+                <textarea placeholder="请写下你的评论..." >@八哥： </textarea>
+                <div class="send-group">
+                  <a class="cancel-btn" href="#">取消</a>
+                  <a class="send-btn" href="#">发送</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="comment-foot">
+          <div class="paginations">
+            <button class="page-prev page-btn">上一页</button>
+            <button class="page-btn" disabled>1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <span class="page-btn page-more">...</span>
+            <button class="page-btn">10</button>
+            <button class="page-next page-btn">下一页</button>
+          </div>
+        </div-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed-height"></div>
+
+    <div class="go-activity" *ngIf="!isFree && !deadtimeInvalid && !isAlreadyJoin">
+        <a class="go-activity-btn" data-toggle="modal" data-target="#buyTicket" (click)="joinEvent()"><span>{{'register'|translate}}</span>
+  <i class="mdi mdi-arrow-right"></i></a>
+    </div>
+
+    <div class="go-activity" *ngIf="isFree && !deadtimeInvalid && !isAlreadyJoin">
+        <a class="go-activity-btn" data-toggle="modal" data-target="#joinFree" (click)="joinEventFree()"><span>{{'freeTojoin'|translate}}</span>
+  <i class="mdi mdi-arrow-right"></i></a>
+    </div>
+
+    <div class="go-activity" *ngIf="isAlreadyJoin">
+        <a class="go-activity-btn" data-toggle="modal" data-target="#joinFree" (click)="alreadyJoin()"><span>{{'JoinGroupChat'|translate}}</span>
+      <i class="mdi mdi-arrow-right"></i></a>
+    </div>
+
+</div>

@@ -1,0 +1,64 @@
+<app-nav [subNav]="true"></app-nav>
+
+<div class="main-container">
+  <div class="block-tab clearfix">
+    <div class="active block-list">
+      <div class="slide-content">
+        <app-swiper [title]="'Local Events'" [data]="swiperData['local']" *ngIf="display('local')"></app-swiper>
+        <app-swiper [title]="'My Events'" [data]="swiperData['myEvents']" *ngIf="display('myEvents')"></app-swiper>
+        <app-swiper [title]="'Popular Events'" [data]="swiperData['popular']" *ngIf="display('popular')"></app-swiper>
+        <app-swiper [title]="'Upcoming Events'" [data]="swiperData['upcoming']" *ngIf="display('upcoming')"></app-swiper>
+        <app-swiper [title]="'Circles'" [data]="swiperData['circles']" *ngIf="display('circles')"></app-swiper>
+      </div>
+    </div>
+
+    <div class="block-list">
+      <app-card></app-card>
+    </div>
+    <div class="block-list"></div>
+    <div class="block-list"></div>
+  </div>
+</div>
+<app-footer></app-footer>
+
+
+<script src="/assets/js/swiper.jquery.min.js"></script>
+<script src="/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="/assets/js/menubox.js"></script>
+<script src="/assets/js/custom.js"></script>
+<script>
+  var swiper1 = new Swiper('#swiper1', {
+    slidesPerView: "auto",
+    paginationClickable: true,
+    nextButton: '#swiper1-next',
+    prevButton: '#swiper1-prev',
+  });
+  var swiper2 = new Swiper('#swiper2', {
+    slidesPerView: "auto",
+    paginationClickable: true,
+    nextButton: '#swiper2-next',
+    prevButton: '#swiper2-prev',
+  });
+  var swiper3 = new Swiper('#swiper3', {
+    slidesPerView: "auto",
+    paginationClickable: true,
+    nextButton: '#swiper3-next',
+    prevButton: '#swiper3-prev',
+  });
+
+  // tab
+  $(".block-tabs li").on("click", function() {
+    if (!$(this).hasClass("active")) {
+      var tabNum = $(this).index();
+      var nthChild = tabNum + 1;
+      $(".block-tabs li.active").removeClass("active");
+      $(this).addClass("active");
+      $(".block-tab .block-list.active").removeClass("active");
+      $(".block-tab .block-list:nth-child(" + nthChild + ")").addClass("active");
+    }
+  });
+</script>
+
+<!-- Initialize Swiper -->
+
+

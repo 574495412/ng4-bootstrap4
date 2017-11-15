@@ -1,0 +1,95 @@
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#buyTicket">买票</button>
+
+<!-- Modal -->
+<div id="buyTicket" class="modal fade" role="dialog" data-modal-index="1">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">选择票种</h4>
+      </div>
+      <div class="modal-body modal-backgroud">
+        <div>
+          <div *ngFor="let name of ticketNames; let i = index">
+            <div class="ticket-card hvr-shutter-out-horizontal" data-toggle="modal" data-target="#seatSelect" (click)="clickTicket(i)">
+              <div class="ticket-card-name">{{name}}</div>
+              <div class="ticket-card-price">${{ticketPrices[i]}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="seatSelect" class="modal fade" role="dialog" data-modal-index="2">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">选择座位</h4>
+      </div>
+      <div class="modal-body modal-backgroud">
+        <div class="seat-row">
+            <div *ngFor="let seat of selectedSeatList; let i = index" data-toggle="modal" data-target="#payment-modal" [ngClass]="{'disable-seat': seat!=0, 'hvr-shutter-out-horizontal': seat==0}" (click)="buyTicket(i)" class="seat-card">
+              <div class="seat-index">{{i+1}}</div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="payment-modal" class="modal fade" role="dialog" data-modal-index="3">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">支付信息</h4>
+      </div>
+      <div class="modal-body modal-backgroud">
+        <div class="stripe-form">
+          <form>
+            <div class="group">
+              <label>
+                <span>电子邮箱：</span>
+                <input (keyup)="onKeyEmail($event)" name="user-email" class="field" placeholder="Email" type="email" />
+              </label>
+            </div>
+            <div class="group">
+              <label>
+                <span>持卡人姓名:</span>
+                <input (keyup)="onKeyUsername($event)" name="cardholder-name" class="field" placeholder="Cardholder Name" />
+              </label>
+              <label>
+                <span>卡号:</span>
+                <div id="card-element" class="field"></div>
+              </label>
+            </div>
+            <button type="submit">确认支付</button>
+            <div class="outcome">
+              <div class="error" role="alert"></div>
+              <div class="success">
+                Success! Your Stripe token is <span class="token"></span>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>

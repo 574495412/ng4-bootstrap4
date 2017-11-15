@@ -1,0 +1,263 @@
+.member-row {
+    position: relative;
+}
+
+.circle-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.circle-element {
+    border: 1px solid #E8E8E8;
+    padding: 20px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display");
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro");
+
+
+.card a {
+  color: #333;
+  text-decoration: none;
+}
+.card:hover .card-image img {
+  width: 110%;
+  filter: grayscale(0);
+}
+.card-image {
+  height: 250px;
+  position: relative;
+  overflow: hidden;
+}
+.card-image img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition-property: filter width;
+  transition-duration: .3s;
+}
+.card-body {
+  text-align: center;
+  padding: 15px 20px;
+  box-sizing: border-box;
+}
+.card-date {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.card-title,
+.card-exceprt {
+  font-family: 'Playfair Display', serif;
+}
+.card-date,
+.card-title {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.card-date,
+.card-exceprt,
+#case-title {
+  color: #777;
+}
+#case-title {
+  position: absolute;
+  font: 18px 'Microsoft YaHei';
+  top:10px;
+  left:0px;
+  right:0px;
+  margin:auto;
+  display:block;
+  text-align:center;
+  text-decoration: none;
+}
+
+
+.circle-element img {
+    position: absolute;
+    object-fit: cover;
+    object-position: center;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    border: 1px solid #E8E8E8;
+}
+
+.circle-id {
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 80px;
+}
+
+.circle-date {
+    color: #C0C0C0;
+    margin-top: 5px;
+    margin-left: 80px;
+}
+
+.circle-price {
+    margin-top: 5px;
+    font-weight: 600;
+    margin-left: 80px;
+}
+
+.circle-des {
+    margin-top: 5px;
+}
+
+.my-circle-row {
+    margin-bottom: 40px;
+}
+
+.my-following-circle-row {
+    margin-bottom: 80px;
+}
+
+@media (min-width:750px) {
+
+  .card {
+    width: 400px;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0px 5px 20px #555;
+  }
+
+    .main-content {
+        margin-top: 100px;
+        width: 750px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .user-name h1{
+      font-size: 50px;
+      font-weight: 400;
+    }
+
+    .user-icon-img {
+        object-fit: cover;
+        object-position: center;
+        height: 250px;
+        width: 250px;
+    }
+
+    .user-info-section{
+        position: absolute;
+        left: 37%;
+        top: 0px;
+    }
+
+    .city-to-live {
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 20px;
+    }
+
+    .occupation {
+      font-size: 16px;
+      font-weight: 400;
+        margin-top:20px;
+    }
+
+    .description{
+      font-size: 18px;
+      font-weight: 500;
+        margin-top: 10px;
+    }
+
+    .stat-section {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        width:33%;
+    }
+
+    .stat-element {
+        width: 100%;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        border: 1px solid #E8E8E8;
+        padding: 20px;
+    }
+}
+
+@media (max-width:749px) {
+
+  .card {
+    width: 80vw;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0px 5px 20px #555;
+  }
+
+    .main-content {
+        margin-top: 90px;
+        width: 100%;
+    }
+
+    .member-row {
+        width: 80vw;
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+
+    .user-icon-img {
+        object-fit: cover;
+        object-position: center;
+        height: 30vw;
+        width: 30vw;
+        border-radius: 50%;
+    }
+
+    .user-info-section{
+        margin-bottom: 30px;
+        width: 80vw;
+    }
+
+    .user-name h1{
+      font-size: 50px;
+      font-weight: 400;
+    }
+
+    .rightGender{
+      float:right;
+    }
+
+    .city-to-live {
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 20px;
+    }
+
+    .occupation {
+        margin-top:20px;
+    }
+
+    .description{
+        margin-top: 10px;
+    }
+
+    .stat-element {
+        margin-bottom: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        width: 80vw;
+        border-radius: 12px;
+        border: 1px solid #E8E8E8;
+        padding: 10px;
+    }
+
+    .stats-content {
+        float: right;
+    }
+
+    .stat-section {
+        margin-bottom: 30px;
+    }
+}

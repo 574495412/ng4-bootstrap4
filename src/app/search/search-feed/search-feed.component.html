@@ -1,0 +1,33 @@
+<div class="card-content">
+  <div class="container">
+    <div class="card" *ngFor="let i of feeds">
+      <div class="card-top">
+        <div class="card-user">
+          <a class="card-avatar" href="#"><img [attr.src]="getPhoto(i._creator.userPhoto)" width="30" height="30"></a>
+          <a class="card-username" href="#"><span>{{i._creator.username}}</span></a>
+        </div>
+        <div class="card-time">Post on {{ i.postDate | date }}</div>
+        <div class="card-body">
+          <div class="card-img">
+            <a href="#"><img [attr.src]="getImg(i.cover)"></a>
+          </div>
+          <div class="card-info">
+            <div class="card-title">{{i.title}}</div>
+            <div class="card-sketch">{{i.content}}</div>
+          </div>
+          <div class="card-type">
+            <a href="#" *ngFor="let tag of i.tags"><span>{{tag}}</span></a>
+          </div>
+        </div>
+        <div class="card-bottom clearfix">
+          <ul>
+            <li><a href="#"><i class="mdi mdi-comment-processing"></i><span>{{i.viewers}}</span></a></li>
+            <li><a href="#"><i class="mdi mdi-heart"></i><span>{{i.likes.length}}</span></a></li>
+            <li><a href="#"><i class="mdi mdi-share-variant"></i></a></li>
+          </ul>
+          <a class="card-chat" href="#">Group Chat</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

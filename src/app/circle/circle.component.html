@@ -1,0 +1,64 @@
+<app-nav hideNavTab = true></app-nav>
+
+<div class = "main-content">
+    <div class = "member-row">
+        <img class="user-icon-img" src="{{icon}}">
+    </div>
+
+    <div class = "member-row">
+        <div class="channel-name">{{channelName}}</div>
+    </div>
+
+    <div class = "member-row">
+        <div class="creator-name">{{creatorName}} 创建了圈子</div>
+    </div>
+
+    <div class = "member-row">
+        <div class="share-button" data-toggle="modal" data-target="#showShare">把圈子分享到社交网络</div>
+        <div class="modal fade" id="showShare" role="dialog">
+            <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <h4 class="modal-title">分享小密圈</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="social-share" [attr.data-title]="shareTitle" [attr.data-description]="des"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class = "member-row">
+        <div class="info-section">
+            <div class="info-element">发布 {{postNum}}</div>
+            <div class="info-element">成员 {{followersNum}}</div>
+        </div>
+    </div>
+
+    <div class = "member-row">
+        <div class="pay-title">收费方式</div>
+    </div>
+
+    <div class = "member-row">
+        <div class="pay-des">{{methodText}}</div>
+    </div>
+
+    <div class = "member-row">
+        <div class="circle-title">圈子介绍</div>
+    </div>
+    <div class = "member-row">
+        <div class="circle-des">{{des}}</div>
+    </div>
+
+    <div class = "member-row {{hidePayButtonClass}}">
+        <div class="share-button">支付 CA${{price}} 成会员</div>
+    </div>
+</div>
+

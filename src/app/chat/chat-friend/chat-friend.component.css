@@ -1,0 +1,89 @@
+.clear{
+  clear: both;
+}
+.chat-friend-left{
+  float: left;
+  border-right:1px solid #ddd;
+  height: 100%;
+  overflow: scroll;
+  width:250px;
+}
+
+.chat-list{
+  padding:7px;
+  height: 80px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+.cfl-head{
+  height: 40px;
+  padding: 10px;
+  font-size: 14px;
+  color: #666;
+  background-color: #eee;
+  border-bottom: 1px solid#ddd;
+}
+.chat-list-left{
+  float: left;
+  width: 45px;
+  height: 45px;
+}
+.chat-list-right{
+  float: left;
+}
+.chat-list-avatar{
+  padding-right:5px;
+}
+.chat-list-avatar img{
+  width: 45px;
+  height: 45px;
+}
+.chat-list-username{
+  padding: 2px 8px;
+  color:#222;
+  font-size: 14px;
+}
+.clear{
+  clear: both;
+}
+
+
+.cf-right{
+  float: left;
+  width:650px;
+  padding:70px 100px;
+}
+.cf-head{
+  border-bottom: 1px solid #ddd;
+}
+.cf-head-left{
+  float: left;
+  width:290px;
+  padding: 20px;
+}
+.cf-head-right{
+  float: left;
+  width: 160px;
+}
+.cf-username{
+  font-size: 34px;
+  color:#333;
+}
+.cf-description{
+  color: #888;
+  font-size: 14px;
+}
+.cf-icon{
+  padding:20px;
+}
+.cf-icon img{
+  width: 100px;
+  height: 100px;
+}
+.cf-button{
+  padding:20px;
+  text-align: center;
+}
+.cf-button button{
+  margin: 10px;
+}

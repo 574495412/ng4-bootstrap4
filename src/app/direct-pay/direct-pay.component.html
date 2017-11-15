@@ -1,0 +1,74 @@
+<div></div>
+<app-nav hideNavTab = true></app-nav>
+
+<div class="main-container">
+  <div class="card-content no-tab">
+    <div class="container">
+      <div class="title">{{'payment'|translate}}</div>
+      <div class="order-content">
+        <div class="order-row author-row">
+          <a class="author-img"><img src="{{icon}}" onError="this.src='./assets/img/group01.png'"/></a>
+          <div class="author-info">
+            <span class="authorname">{{creatorName}}</span>
+          </div>
+        </div>
+        <div class="order-row ticket-title">{{'invoiceTitle'|translate}}</div>
+        <div class="order-row ticket-content">
+          <div class="ticket-name">{{ticketName}}</div>
+          <div class="ticket-remain">{{'quantity'|translate}}： {{ticketRemain}}</div>
+          <div class="ticket-price">{{currency}} {{ticketPrice}}</div>
+        </div>
+        <div class="order-row additional-fee-title">
+          <div class="addtionalFeeContent">Fee</div>
+          <div class="addtionalFeeNumber">{{currency}} {{addtionalFee}}</div>
+        </div>
+        <div class="order-row"></div>
+        <div class="order-row total-fee-title-container">
+          <div class="total-fee-title">{{'totalamount'|translate}}</div>
+          <div class="total-fee-number">{{currency}} {{totalPrice}}</div>
+        </div>
+        <div class="order-row feeBottom"></div>
+
+        <div class="stripe-form">
+          <form class="payform">
+
+            <div class="group">
+              <label>
+                <input (keyup)="onKeyEmail($event)" name="user-email" class="field form-control" placeholder="Email" type="text" required [(ngModel)]="paymentModel.email" #paymentEmail="ngModel" pattern="[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.[a-zA-Z]{2,3}$"/>
+              </label>
+
+              <div *ngIf="paymentEmail.errors && (paymentEmail.dirty || paymentEmail.touched)" class="alert alert-danger">
+                <div [hidden]="!paymentEmail.errors.required">{{'emailCannotBeBlank'|translate}}</div>
+                <div [hidden]="!paymentEmail.errors.pattern">{{'emailCannotBeBlank'|translate}}</div>
+              </div>
+              <label>
+                <input (keyup)="onKeyUsername($event)" name="cardholder-name" class="field form-control" placeholder="Cardholder Name" required [(ngModel)]="paymentModel.name" #paymentName="ngModel"/>
+              </label>
+              <div *ngIf="paymentName.errors && (paymentName.dirty || paymentName.touched)" class="alert alert-danger">
+                <div [hidden]="!paymentEmail.errors.required">{{'nameOnCreditCardTip'|translate}}</div>
+              </div>
+              <label>
+                <div id="card-element" class="field"></div>
+              </label>
+            </div>
+
+            <button type="submit" class="payb">{{'pay'|translate}}</button>
+            <div class="payment-notice">
+              <span>
+                I accept the terms of service and have read the privacy policy.
+              </span>
+            </div>
+            <div class="outcome">
+              <div class="error" role="alert"></div>
+            </div>
+            <div></div>
+          </form>
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

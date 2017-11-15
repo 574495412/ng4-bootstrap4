@@ -1,0 +1,21 @@
+
+  <div class="cd-popup-container">
+      <h3>Login to your account</h3>
+      <p>Welcome back, sign in with your existing account credentials.</p>
+      <div class="sub_box">
+          <form metohd="post" (ngSubmit)="signin()">
+              <div class="inputbox">
+                  <input [(ngModel)]="form.email" required name="email" type="email" placeholder="Enter your email"/>
+                  <input [(ngModel)]="form.password" required name="password" type="password" placeholder="Enter your password"/>
+              </div>
+              <button class="sub_btn btn" type="submit">LOGIN</button>
+          </form>
+      </div>
+      <span class="login-tips">Dont have an account yet?
+          <a (click)="switchToSignup()" href="#">Create account</a>
+      </span>
+      <!--<span class="login-tips">Forgot your username or password?-->
+          <!--<a href="page-accounts-create-1.html">Recover account</a>-->
+      <!--</span>-->
+      <a href="#0" class="cd-popup-close img-replace">Close</a>
+  </div>

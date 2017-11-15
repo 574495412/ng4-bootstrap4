@@ -1,0 +1,123 @@
+<!--<app-nav></app-nav>-->
+<!--Header Nav-->
+<!--<div class="nav">-->
+<!--<div class="pull-left">-->
+<!--<a href="index.html"><img src="/assets/img/logo.png"></a>-->
+<!--</div>-->
+<!--<div class="pull-right card-avatar">-->
+<!--<a href="/group/{{target.id}}">群组成员</a>-->
+<!--</div>-->
+<!--</div>-->
+
+<head>
+  <meta charset="utf-8">
+  <title>Chumi</title>
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <meta name="description" content="Site Description Here">
+  <link rel="icon" href="../../../assets/img/fav.png" type="image/x-icon">
+  <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../../assets/css/swiper.css" rel="stylesheet">
+  <link href="../../../assets/css/main.css" rel="stylesheet">
+  <link href="../../../assets/css/stack-interface.css" rel="stylesheet">
+  <!--<link href="../../../assets/css/mdi.css" rel="stylesheet">-->
+  <link href="../../../assets/css/chat.css" rel="stylesheet">
+</head>
+<app-nav hideNavTab=t rue></app-nav>
+
+<body>
+
+<div class="nav-container no-tab">
+  <div class="top-bar">
+    <a class="pull-left" *ngIf="!isFreeEvent" href="{{linkToInvoice}}">{{'invoice'|translate}}</a>
+    <a class="top-bar-title" id="titleconnect" style="font-weight:600">
+      <!-- <img src="../../../assets/img/member.png">  -->
+      {{'eventgroupchat'|translate}}
+    </a>
+    <h1 class="top-bar-title"></h1>
+  </div>
+</div>
+
+
+<!--Chat content-->
+<!--<div class="top-bar">-->
+<!--<a class="pull-left" *ngIf="!isFreeEvent" href="{{linkToInvoice}}">账单</a>-->
+<!--<a class="top-bar-btn pull-right" href="/group/{{target.id}}"><img src="../../../assets/img/member.png"></a>-->
+<!--<h1 class="top-bar-title">群聊</h1>-->
+<!--</div>-->
+<div class="conversation">
+
+  <div class="top-bar">
+    <!--<a class="pull-left" *ngIf="!isFreeEvent" href="{{linkToInvoice}}">账单</a>-->
+    <!--<a class="label pull-right" href="/group/{{target.id}}">Group Members</a>-->
+    <!--<h1 class="top-bar-title">{{target.name}}</h1>-->
+  </div>
+  <div class="container" style="background-color:#fff;height:100%">
+    <ul id="window" class="conversation-list nicescroll" tabindex="5000">
+      <li class="clearfix data-time">
+        <a href="http://a.app.qq.com/o/simple.jsp?pkgname=co.chumi.cq.www">{{'welcomeJoinChat1'|translate}}</a>
+      </li>
+      <li class="clearfix data-time">
+        <a href="http://a.app.qq.com/o/simple.jsp?pkgname=co.chumi.cq.www">{{'welcomeJoinChat2'|translate}}</a>
+      </li>
+      <li class="chat-window-msgs" *ngFor="let i of messages">
+        <div class="clearfix data-time" *ngIf="i.messageType=='ImageMessage'">
+          <a href="http://a.app.qq.com/o/simple.jsp?pkgname=co.chumi.cq.www">{{'downloadappToSendpic'|translate}}</a>
+        </div>
+        <div class="clearfix chat-window-messages" *ngIf="i.messageDirection==2">
+          <div class="chat-avatar">
+            <img src="{{i.content.user.icon}}" width="42" height="42">
+            <i>{{i.sentTime | date:'HH:mm'}}</i>
+          </div>
+          <div class="conversation-text">
+            <div class="ctext-wrap white" *ngIf="i.messageType=='TextMessage'">
+              <i>{{i.content.user.name}}</i>
+              <p>
+                {{i.content.content}}
+              </p>
+            </div>
+            <div class="ctext-wrap" *ngIf="i.messageType=='ImageMessage'">
+              <img src="{{i.content.imageUri}}" width="100%">
+            </div>
+          </div>
+        </div>
+        <div class="clearfix odd chat-window-messages" *ngIf="i.messageDirection==1">
+          <div class="chat-avatar">
+            <img src="{{i.content.user.icon}}" width="42" height="42">
+            <i>{{i.sentTime | date:'HH:mm'}}</i>
+          </div>
+          <div class="conversation-text ">
+            <div class="ctext-wrap blue">
+              <i style="color:#fff">{{i.content.user.name}}</i>
+              <p>
+                {{i.content.content}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!--Chat Input-->
+<!-- <div class="chat-window-input" id="input-box">
+<div class="container-fluid">
+    <div>
+        <textarea id="input" class="col-lg-12 col-md-5 col-sm-5 col-xs-5" [(ngModel)]="myMessage" name="myMessage" placeholder="请输入内容">
+</textarea>
+        <button class="btn btn-lg btn-info" (click)="onSentMsgBtnClick($event)">发送</button>
+    </div>
+    <div class="card pull-left">
+        <label style="margin-top: 8px">
+     更好体验，请下载我们的app</label>
+    </div>
+</div> -->
+<div class="chat-foot container" id="input-box">
+  <div class="chat-inputbar">
+    <input type="text" class="chat-input myMessage" placeholder="{{'pleaseEnterMessage'|translate}}" [(ngModel)]="myMessage" name="myMessage">
+  </div>
+  <div class="chat-send">
+    <button type="submit" class="send-btn " id="sendbutton" (click)="onSentMsgBtnClick($event)">{{'send'|translate}}</button>
+  </div>
+</div>
+</body>

@@ -1,0 +1,15 @@
+<div class="container container-search">
+  <div class="search-user" *ngFor="let i of users">
+    <div class="search-user-list" (click)="navToMember(i._id)">
+      <div class="search-user-avatar">
+        <img [attr.src]="getPhoto(i.userPhoto)">
+      </div>
+      <div class="search-user-info">
+        <div class="search-user-username">{{i.username}}</div>
+        <div class="search-user-description">{{i.description}}</div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
