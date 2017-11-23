@@ -1,72 +1,70 @@
 {
-  "project": {
-    "version": "1.0.0-beta.28.3",
-    "name": "chumie"
-  },
-  "apps": [
-    {
-      "root": "src",
-      "outDir": "dist",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
-      "index": "index.html",
-      "main": "main.ts",
-      "polyfills": "polyfills.ts",
-      "test": "test.ts",
-      "tsconfig": "tsconfig.json",
-      "prefix": "app",
-      "styles": [
-        "styles.css",
-        "../node_modules/social-share.js/dist/css/share.min.css"
-      ],
-      "scripts": [
-        "./assets/js/RongIMLib-2.2.5.min.js",
-        "./assets/js/social-share.js",
-        "./assets/js/qrcode.js"
-      ],
-      "environmentSource": "environments/environment.ts",
-      "environments": {
-        "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
-      }
-    }
-  ],
-  "e2e": {
-    "protractor": {
-      "config": "./protractor.conf.js"
-    }
-  },
-  "lint": [
-    {
-      "files": "src/**/*.ts",
-      "project": "src/tsconfig.json"
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "project": {
+        "name": "chumie",
+        "version": "4.0.1"
     },
-    {
-      "files": "e2e/**/*.ts",
-      "project": "e2e/tsconfig.json"
-    }
-  ],
-  "test": {
-    "karma": {
-      "config": "./karma.conf.js"
-    }
-  },
-  "defaults": {
-    "styleExt": "css",
-    "prefixInterfaces": false,
-    "inline": {
-      "style": false,
-      "template": false
+    "apps": [{
+        "root": "src",
+        "outDir": "dist",
+        "assets": [
+            "assets",
+            "config",
+            "favicon.ico"
+        ],
+        "index": "index.html",
+        "main": "main.ts",
+        "polyfills": "polyfills.ts",
+        "test": "test.ts",
+        "tsconfig": "tsconfig.app.json",
+        "testTsconfig": "tsconfig.spec.json",
+        "prefix": "app",
+        "styles": [
+            "../node_modules/bootstrap/dist/css/bootstrap.css",
+            "./assets/css/core.min.css",
+            "../node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
+            "../node_modules/social-share.js/dist/css/share.min.css",
+            "../node_modules/socicon/css/socicon.css",
+            "../node_modules/jam-icons/css/jam-icons.css",
+            "./assets/css/app.css",
+            "styles.css"
+        ],
+        "scripts": [
+            "./assets/js/RongIMLib-2.2.5.min.js",
+            "./assets/js/social-share.js",
+            "./assets/js/qrcode.js"
+        ],
+        "environmentSource": "environments/environment.ts",
+        "environments": {
+            "dev": "environments/environment.ts",
+            "prod": "environments/environment.prod.ts"
+        }
+    }],
+    "e2e": {
+        "protractor": {
+            "config": "./protractor.conf.js"
+        }
     },
-    "spec": {
-      "class": false,
-      "component": true,
-      "directive": true,
-      "module": false,
-      "pipe": true,
-      "service": true
+    "lint": [{
+            "project": "src/tsconfig.app.json",
+            "exclude": "**/node_modules/**"
+        },
+        {
+            "project": "src/tsconfig.spec.json",
+            "exclude": "**/node_modules/**"
+        },
+        {
+            "project": "e2e/tsconfig.e2e.json",
+            "exclude": "**/node_modules/**"
+        }
+    ],
+    "test": {
+        "karma": {
+            "config": "./karma.conf.js"
+        }
+    },
+    "defaults": {
+        "styleExt": "css",
+        "component": {}
     }
-  }
 }

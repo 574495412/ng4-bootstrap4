@@ -1,0 +1,32 @@
+/*font*/
+
+
+/* @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,300i"); */
+
+
+/*Page css
+#########################*/
+
+
+/*问题创建*/
+
+.add-qa {
+    display: block;
+    padding: 20px;
+    text-align: center;
+    border: 2px dashed #ebebeb;
+    background-color: #fcfdfe;
+    -webkit-transition: .5s;
+    transition: .5s;
+    color: #a5b3c7;
+    margin-bottom: 30px;
+}
+
+.add-qa:hover {
+    color: #868e96;
+}
+
+.jam {
+    vertical-align: middle;
+    display: inline-block;
+}

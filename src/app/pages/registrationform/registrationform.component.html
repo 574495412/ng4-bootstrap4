@@ -1,0 +1,98 @@
+<!-- Topbar -->
+<header class="topbar">
+    <div class="topbar-left">
+        <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span>
+        <button class="btn btn-bold btn-secondary ml-3" type="botton"><i class="jam jam-arrow-left mr-2"></i>返回</button>
+    </div>
+
+    <div class="topbar-right">
+        <ul class="topbar-btns">
+            <li>
+                <button class="btn btn-bold btn-primary mr-3" type="submit" (click)="saveRegistrationForm()"><i class="ti-save mr-2"></i>保存问卷</button>
+            </li>
+            <!-- END Notifications -->
+        </ul>
+    </div>
+</header>
+<!-- END Topbar -->
+
+<!-- Main container -->
+<main>
+
+    <header class="header">
+        <div class="header-info">
+            <div class="left">
+                <h2 class="header-title">问卷创建</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">首页</a></li>
+                    <li class="breadcrumb-item"><a href="#">问卷</a></li>
+                    <li class="breadcrumb-item active">问卷创建</li>
+                </ol>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="row">
+            <div class="col-lg-4 col-md-6" *ngFor="let form of registrationForm; let i = index">
+                <form class="card form-type-combine">
+                    <h4 class="card-title"><strong>表单问题{{i+1}}</strong></h4>
+                    <div class="card-body">
+                        <h6 class="text-default">问题类型</h6>
+                        <div class="form-groups-attached">
+                            <div class="form-group">
+                                <label for="textarea">问题标题</label>
+                                <textarea class="form-control" id="textarea" rows="2" name="form.question" [(ngModel)]="form.question"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>答案类型</label>
+                                <select [ngModel]="form.type" class="form-control" (ngModelChange)="form.type=$event;setType(form.type)" name="type">
+                                    <option *ngFor="let item of types" [value]='item'>{{item}}</option>  
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <h6 class="text-default" *ngIf="form.type!='填写题'">答案填写</h6>
+                        <div class="form-groups-attached" *ngIf="form.type!='填写题'">
+                            <div class="row">
+                                <div class="form-group col-6" *ngFor="let key of form.answers;let ind=index">
+                                    <label>选项{{ind+1}}答案</label>
+                                    <input class="form-control" type="text" name="answer{{ind}}" #key1="ngModel" placeholder="请输入答案" [(ngModel)]="key.answer">
+                                </div>
+                            </div>
+                            <!-- <div class="row" *ngFor="let answer of getKeys(form)">
+                                <div class="form-group col-6" *ngFor="let key of form[answer];let ind=index">
+                                    <label>选项{{ind+1}}答案</label>
+                                    <input class="form-control" type="text" name="key.answer" placeholder="请输入答案" [(ngModel)]="key.answer">
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <footer class=" card-footer text-right ">
+                        <button class="btn btn-bold btn-secondary " type="reset" (click)="resetForm(i)">重置</button>
+                        <button class="btn btn-bold btn-primary " type="submit " (click)="addAnswer(i)">添加答案</button>
+                    </footer>
+                </form>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 ">
+                <a class="add-qa" (click)="addQuestion()">添加新的问题</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="site-footer ">
+        <div class="row ">
+            <div class="col-md-6 ">
+                <p class="text-center text-md-left ">Copyright © 2017 <a href="http://thetheme.io/theadmin ">Chumi</a>. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- END Footer -->
+
+</main>
+<!-- END Main container -->
